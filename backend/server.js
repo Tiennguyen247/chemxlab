@@ -1,70 +1,34 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+const express = require("express");
+const mysql = require("mysql2/promise");
+require("dotenv").config();
 
+// 1. KHỞI TẠO app TRƯỚC (Đây là dòng bạn có thể đang thiếu hoặc để dưới cùng)
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-// Đọc dữ liệu từ file JSON (không cần database)
-function getData() {
-  const filePath = path.join(__dirname, '../db/data.json');
-  const raw = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(raw);
-}
+// 2. Cấu hình kết nối Database
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || "db",
+  user: process.env.DB_USER || "chemxlab_user",
+  password: process.env.DB_PASSWORD || "chemxlab_password",
+  database: process.env.DB_NAME || "chemxlab",
+  waitForConnections: true,
+  connectionLimit: 10,
+});
 
-// ✅ API 1: Lấy danh sách hóa chất
-app.get('/chemicals', (req, res) => {
+// 3. ĐỊNH NGHĨA ROUTE (Bây giờ mới dùng được biến app)
+app.get("/chemicals", async (req, res) => {
   try {
-    const data = getData();
-    res.json(data.chemicals);
+    const [rows] = await pool.query("SELECT * FROM Chemicals");
+    res.json(rows);
   } catch (err) {
-    res.status(500).json({ error: 'Không đọc được dữ liệu' });
+    console.error(err);
+    res.status(500).json({ error: "Lỗi kết nối database" });
   }
 });
 
-// ✅ API 2: Lấy danh sách thiết bị
-app.get('/equipment', (req, res) => {
-  try {
-    const data = getData();
-    res.json(data.equipment);
-  } catch (err) {
-    res.status(500).json({ error: 'Không đọc được dữ liệu' });
-  }
-});
-
-// ✅ API 3: Kiểm tra phản ứng hóa học
-// Gửi lên: { "reactants": ["HCl", "NaOH"] }
-app.post('/reaction/check', (req, res) => {
-  try {
-    const { reactants } = req.body;
-
-    if (!reactants || !Array.isArray(reactants)) {
-      return res.status(400).json({ error: 'Thiếu danh sách chất phản ứng' });
-    }
-
-    const data = getData();
-    const sorted = [...reactants].sort();
-
-    // Tìm phản ứng khớp
-    const match = data.reactions.find(r => {
-      const rSorted = [...r.reactants].sort();
-      return JSON.stringify(rSorted) === JSON.stringify(sorted);
-    });
-
-    if (match) {
-      res.json({ found: true, reaction: match });
-    } else {
-      res.json({ found: false, message: 'Không có phản ứng xảy ra' });
-    }
-  } catch (err) {
-    res.status(500).json({ error: 'Lỗi server' });
-  }
-});
-
-// Khởi chạy server
+// 4. KHỞI CHẠY SERVER
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`✅ Server ChemxLab đang chạy tại: http://localhost:${PORT}`);
+  console.log(`Server chạy tại http://localhost:${PORT}`);
 });

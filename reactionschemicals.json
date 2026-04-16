@@ -1,0 +1,494 @@
+[
+	{
+		"ReactionID" : 1,
+		"ChemicalID" : 8,
+		"HeSo" : 3,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 1,
+		"ChemicalID" : 40,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 1,
+		"ChemicalID" : 41,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 2,
+		"ChemicalID" : 8,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 2,
+		"ChemicalID" : 42,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 2,
+		"ChemicalID" : 43,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 2,
+		"ChemicalID" : 44,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 3,
+		"ChemicalID" : 1,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 3,
+		"ChemicalID" : 8,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 3,
+		"ChemicalID" : 47,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 4,
+		"ChemicalID" : 8,
+		"HeSo" : 5,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 4,
+		"ChemicalID" : 15,
+		"HeSo" : 4,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 4,
+		"ChemicalID" : 48,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 5,
+		"ChemicalID" : 8,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 5,
+		"ChemicalID" : 26,
+		"HeSo" : 3,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 5,
+		"ChemicalID" : 49,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 6,
+		"ChemicalID" : 1,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 6,
+		"ChemicalID" : 30,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 6,
+		"ChemicalID" : 38,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 6,
+		"ChemicalID" : 39,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 7,
+		"ChemicalID" : 1,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 7,
+		"ChemicalID" : 26,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 7,
+		"ChemicalID" : 50,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 7,
+		"ChemicalID" : 51,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 8,
+		"ChemicalID" : 1,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 8,
+		"ChemicalID" : 29,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 8,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 8,
+		"ChemicalID" : 52,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 9,
+		"ChemicalID" : 1,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 9,
+		"ChemicalID" : 11,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 9,
+		"ChemicalID" : 47,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 9,
+		"ChemicalID" : 53,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 10,
+		"ChemicalID" : 1,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 10,
+		"ChemicalID" : 8,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 10,
+		"ChemicalID" : 47,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 11,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 11,
+		"ChemicalID" : 53,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 11,
+		"ChemicalID" : 54,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 12,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 12,
+		"ChemicalID" : 53,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 12,
+		"ChemicalID" : 55,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 12,
+		"ChemicalID" : 56,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 13,
+		"ChemicalID" : 38,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 13,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 13,
+		"ChemicalID" : 53,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 13,
+		"ChemicalID" : 57,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 14,
+		"ChemicalID" : 38,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 14,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 14,
+		"ChemicalID" : 58,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 14,
+		"ChemicalID" : 59,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 15,
+		"ChemicalID" : 16,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 15,
+		"ChemicalID" : 26,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 15,
+		"ChemicalID" : 60,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 16,
+		"ChemicalID" : 56,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 16,
+		"ChemicalID" : 57,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 16,
+		"ChemicalID" : 64,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 16,
+		"ChemicalID" : 65,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 17,
+		"ChemicalID" : 6,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 17,
+		"ChemicalID" : 8,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 17,
+		"ChemicalID" : 66,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 18,
+		"ChemicalID" : 58,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 18,
+		"ChemicalID" : 66,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 18,
+		"ChemicalID" : 67,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 19,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 19,
+		"ChemicalID" : 58,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 19,
+		"ChemicalID" : 68,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 20,
+		"ChemicalID" : 8,
+		"HeSo" : 3,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 20,
+		"ChemicalID" : 13,
+		"HeSo" : 4,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 20,
+		"ChemicalID" : 69,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 21,
+		"ChemicalID" : 1,
+		"HeSo" : 3,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 21,
+		"ChemicalID" : 13,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 21,
+		"ChemicalID" : 38,
+		"HeSo" : 6,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 21,
+		"ChemicalID" : 70,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 22,
+		"ChemicalID" : 53,
+		"HeSo" : 6,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 22,
+		"ChemicalID" : 56,
+		"HeSo" : 3,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 22,
+		"ChemicalID" : 71,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 22,
+		"ChemicalID" : 72,
+		"HeSo" : 2,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 23,
+		"ChemicalID" : 38,
+		"HeSo" : 2,
+		"Role" : "Reactant"
+	},
+	{
+		"ReactionID" : 23,
+		"ChemicalID" : 47,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 23,
+		"ChemicalID" : 59,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 23,
+		"ChemicalID" : 66,
+		"HeSo" : 1,
+		"Role" : "Product"
+	},
+	{
+		"ReactionID" : 23,
+		"ChemicalID" : 67,
+		"HeSo" : 1,
+		"Role" : "Reactant"
+	}
+]
