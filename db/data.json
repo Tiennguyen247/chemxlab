@@ -1,0 +1,37 @@
+{
+  "chemicals": [
+    { "id": 1, "name": "Axit Clohydric", "formula": "HCl", "danger_level": 3, "description": "Chất lỏng không màu, mùi xốc" },
+    { "id": 2, "name": "Natri Hydroxit", "formula": "NaOH", "danger_level": 3, "description": "Chất rắn trắng, ăn mòn mạnh" },
+    { "id": 3, "name": "Axit Sunfuric", "formula": "H2SO4", "danger_level": 3, "description": "Chất lỏng sánh, cực kỳ nguy hiểm" },
+    { "id": 4, "name": "Natri Clorua", "formula": "NaCl", "danger_level": 1, "description": "Muối ăn thông thường" },
+    { "id": 5, "name": "Đồng(II) Sunfat", "formula": "CuSO4", "danger_level": 2, "description": "Tinh thể màu xanh lam" }
+  ],
+  "equipment": [
+    { "id": 1, "name": "Cốc thủy tinh 250ml", "type": "container" },
+    { "id": 2, "name": "Ống nghiệm", "type": "container" },
+    { "id": 3, "name": "Đèn cồn", "type": "heat_source" },
+    { "id": 4, "name": "Phễu lọc", "type": "filter" }
+  ],
+  "reactions": [
+    {
+      "id": 1,
+      "reactants": ["HCl", "NaOH"],
+      "products": ["NaCl", "H2O"],
+      "equation": "HCl + NaOH → NaCl + H₂O",
+      "type": "neutralization",
+      "visual_effect": "color_change",
+      "danger_level": 2,
+      "description": "Phản ứng trung hòa tạo muối và nước"
+    },
+    {
+      "id": 2,
+      "reactants": ["H2SO4", "NaOH"],
+      "products": ["Na2SO4", "H2O"],
+      "equation": "H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O",
+      "type": "neutralization",
+      "visual_effect": "color_change",
+      "danger_level": 3,
+      "description": "Phản ứng trung hòa mạnh, tỏa nhiệt"
+    }
+  ]
+}
