@@ -28,7 +28,7 @@ export default class MainMenu extends Phaser.Scene {
   tudobtn;
   luyentapbtn;
   hoctapbtn;
-  
+
   constructor() {
     super("mainMenu");
   }
@@ -36,7 +36,7 @@ export default class MainMenu extends Phaser.Scene {
   preload() {
     this.load.image("rabbit", "assets/mm.jpg");
     this.load.image("tudo", "assets/tudobtn.png");
-    this.load.image("luyentap", "assets/luyentapbtn.png"); 
+    this.load.image("luyentap", "assets/luyentapbtn.png");
     this.load.image("hoctap", "assets/hoctapbtn.png");
   }
 
@@ -46,27 +46,28 @@ export default class MainMenu extends Phaser.Scene {
     const centerX = camerawidth / 2;
     const simg = this.add.image(0, 0, "rabbit").setOrigin(0, 0);
     simg.setScale(camerawidth / simg.width, cameraheight / simg.height);
-    this.add.text(centerX, 150, 'ChemLab', {
-      fontFamily: 'Comic Sans MS, cursive, sans-serif',
-      fontSize: '45px', 
-      fontStyle: 'bold',
-      color: '#000000'
-    }).setOrigin(0.5);
+    this.add
+      .text(centerX, 150, "ChemLab", {
+        fontFamily: "Comic Sans MS, cursive, sans-serif",
+        fontSize: "45px",
+        fontStyle: "bold",
+        color: "#000000",
+      })
+      .setOrigin(0.5);
     this.hoctapbtn = this.add.image(centerX, 220, "hoctap").setScale(0.65, 0.6);
-    this.luyentapbtn = this.add.image(centerX, 290, "luyentap").setScale(0.65, 0.6); 
+    this.luyentapbtn = this.add
+      .image(centerX, 290, "luyentap")
+      .setScale(0.65, 0.6);
     this.tudobtn = this.add.image(centerX, 360, "tudo").setScale(0.65, 0.6);
-    
-
-    this.input.on("drag", (pointer, gameob, x, y) => {
-      gameob.setPosition(x, y);
-      console.log(`X: ${x}, Y: ${y}`);
-    });
+    setButtonEffect(this, this.tudobtn);
+    setButtonEffect(this, this.hoctapbtn);
+    setButtonEffect(this, this.luyentapbtn);
 
     this.tudobtn.on("pointerup", (pointer) => {
-      onClick();
+      console.log("ads");
     });
     this.luyentapbtn.on("pointerup", (pointer) => {
-      onClick();
+      console.log("ads");
     });
     this.hoctapbtn.on("pointerup", (pointer) => {
       this.scene.start("HocTapScene");
@@ -74,16 +75,26 @@ export default class MainMenu extends Phaser.Scene {
   }
 
   update() {}
-
-  isStart() {
-    this.input.on("mouseUp");
-  }
-
-  goPlay() {
-    this.scene.start("game");
-  }
 }
+function setButtonEffect(scene, btn) {
+  btn.setInteractive({ cursor: "pointer" });
 
-function onClick() {
-  console.log("Lam gi do");
+  btn.on("pointerdown", () => {
+    scene.tweens.add({
+      targets: btn,
+      scaleX: 0.5,
+      scaleY: 0.45,
+      duration: 100,
+      ease: "Power1",
+    });
+  });
+  btn.on("pointerup", () => {
+    scene.tweens.add({
+      targets: btn,
+      scaleX: 0.65,
+      scaleY: 0.6,
+      duration: 100,
+      ease: "Power1",
+    });
+  });
 }

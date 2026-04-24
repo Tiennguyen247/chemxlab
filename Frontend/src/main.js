@@ -15,4 +15,3 @@ export default new Phaser.Game({
     },
   },
 });
-new Phaser.Game(config);
