@@ -1,5 +1,5 @@
 import Phaser from "./lib/phaser.js";
-import MainMenu from "./scenes/mainMenu.js";
+import MainMenu from "./scenes/MainMenu.js";
 import HocTapScene from "./scenes/HocTapScene.js";
 console.dir(Phaser);
 export default new Phaser.Game({

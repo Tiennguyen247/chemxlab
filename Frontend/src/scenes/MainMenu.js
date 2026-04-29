@@ -38,6 +38,7 @@ export default class MainMenu extends Phaser.Scene {
     this.load.image("tudo", "assets/tudobtn.png");
     this.load.image("luyentap", "assets/luyentapbtn.png");
     this.load.image("hoctap", "assets/hoctapbtn.png");
+    this.load.image("3_gach", "assets/UI/3_gach.png");
   }
 
   create() {
@@ -62,7 +63,12 @@ export default class MainMenu extends Phaser.Scene {
     setButtonEffect(this, this.tudobtn);
     setButtonEffect(this, this.hoctapbtn);
     setButtonEffect(this, this.luyentapbtn);
-
+    this.add
+      .image(0, 0, "3_gach")
+      .setOrigin(0)
+      .setScale(0.15)
+      .setInteractive({ cursor: "pointer" });
+    this.add.container();
     this.tudobtn.on("pointerup", (pointer) => {
       console.log("ads");
     });
