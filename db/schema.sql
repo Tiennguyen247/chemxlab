@@ -44,3 +44,6 @@ CREATE TABLE IF NOT EXISTS Reaction_Chemicals (
   FOREIGN KEY (ReactionID) REFERENCES Reactions(ReactionID),
   FOREIGN KEY (ChemicalID) REFERENCES Chemicals(ChemicalID)
 );
+
+ALTER TABLE Reactions ADD COLUMN IF NOT EXISTS EffectType VARCHAR(45) DEFAULT 'none';
+ALTER TABLE Reactions ADD COLUMN IF NOT EXISTS ColorResult VARCHAR(10);
