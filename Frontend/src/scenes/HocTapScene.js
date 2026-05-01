@@ -1,6 +1,12 @@
 import Phaser from "../lib/phaser.js";
 
-const config = [{ x: 74, y: 140, id: 1 }];
+const config = [{ x: 1, y: 2, id: 1 }];
+
+
+const mockDatabase = [
+  { id: 1, content: "HCl + NaOH → NaCl + H₂O" },
+  { id: 2, content: "H₂SO₄ + 2NaOH → Na₂SO₄ + 2H₂O" }
+];
 
 export default class HocTapScene extends Phaser.Scene {
   constructor() {
@@ -19,14 +25,23 @@ export default class HocTapScene extends Phaser.Scene {
 
   create() {
     this.input.on("pointerdown", (pointer) =>
-      console.log("Tọa độ x: " + pointer.x, " \tTọa độ y:", pointer.y),
+      console.log("Tọa độ x: " + pointer.x, "\tTọa độ y:", pointer.y),
     );
     const camerawidth = this.cameras.main.width;
     const cameraheight = this.cameras.main.height;
     const centerX = camerawidth / 2;
     const centerY = cameraheight / 2;
+    
     const simg = this.add.image(0, 0, "lab").setOrigin(0, 0);
     simg.setScale(camerawidth / simg.width, cameraheight / simg.height);
+
+  
+    this.txtLabBoardEquation = this.add.text(centerX, centerY - 100, "", {
+      fontFamily: "Comic Sans MS, cursive, sans-serif",
+      fontSize: "35px",
+      fontStyle: "bold",
+      color: "#000000" 
+    }).setOrigin(0.5).setDepth(2).setVisible(false); 
 
     this.overlay = this.add
       .rectangle(0, 0, camerawidth, cameraheight, 0x000000, 0.6)
@@ -67,44 +82,37 @@ export default class HocTapScene extends Phaser.Scene {
       align: "left",
     };
 
-    this.btnTrangChu = this.add
-      .image(centerX - 90, centerY - 75, "btnTrangChu")
-      .setDepth(12)
-      .setScale(0.2)
-      .setVisible(false)
-      .setInteractive({ cursor: "pointer" });
+    this.btnTrangChu = this.add.image(centerX - 90, centerY - 75, "btnTrangChu")
+      .setDepth(12).setScale(0.2).setVisible(false).setInteractive({ cursor: "pointer" });
+    this.txtTrangChu = this.add.text(centerX - 20, centerY - 75, "TRANG CHỦ", btnTextStyle)
+      .setOrigin(0, 0.5).setDepth(12).setVisible(false);
 
-    this.txtTrangChu = this.add
-      .text(centerX - 20, centerY - 75, "TRANG CHỦ", btnTextStyle)
-      .setOrigin(0, 0.5)
-      .setDepth(12)
-      .setVisible(false);
+    this.btnCaiDat = this.add.image(centerX - 90, centerY + 5, "btnCaiDat")
+      .setDepth(12).setScale(0.2).setVisible(false).setInteractive({ cursor: "pointer" });
+    this.txtCaiDat = this.add.text(centerX - 20, centerY + 5, "CÀI ĐẶT", btnTextStyle)
+      .setOrigin(0, 0.5).setDepth(12).setVisible(false);
 
-    this.btnCaiDat = this.add
-      .image(centerX - 90, centerY + 5, "btnCaiDat")
-      .setDepth(12)
-      .setScale(0.2)
-      .setVisible(false)
-      .setInteractive({ cursor: "pointer" });
+    this.btnPhuongTrinh = this.add.image(centerX - 90, centerY + 85, "btnPhuongTrinh")
+      .setDepth(12).setScale(0.2).setVisible(false).setInteractive({ cursor: "pointer" });
+    this.txtPhuongTrinh = this.add.text(centerX - 20, centerY + 85, "PHƯƠNG\nTRÌNH", btnTextStyle)
+      .setOrigin(0, 0.5).setDepth(12).setVisible(false);
 
-    this.txtCaiDat = this.add
-      .text(centerX - 20, centerY + 5, "CÀI ĐẶT", btnTextStyle)
-      .setOrigin(0, 0.5)
-      .setDepth(12)
-      .setVisible(false);
 
-    this.btnPhuongTrinh = this.add
-      .image(centerX - 90, centerY + 85, "btnPhuongTrinh")
-      .setDepth(12)
-      .setScale(0.2)
-      .setVisible(false)
-      .setInteractive({ cursor: "pointer" });
+    const equationStyle = {
+        fontFamily: "Comic Sans MS, cursive, sans-serif",
+        fontSize: "20px",
+        fontStyle: "bold",
+        color: "#000000",
+        align: "center"
+    };
 
-    this.txtPhuongTrinh = this.add
-      .text(centerX - 20, centerY + 85, "PHƯƠNG\nTRÌNH", btnTextStyle)
-      .setOrigin(0, 0.5)
-      .setDepth(12)
-      .setVisible(false);
+    this.txtEq1 = this.add.text(centerX, centerY - 30, mockDatabase[0].content, equationStyle)
+        .setOrigin(0.5).setDepth(12).setVisible(false).setInteractive({ cursor: "pointer" });
+    
+    this.txtEq2 = this.add.text(centerX, centerY + 50, mockDatabase[1].content, equationStyle)
+        .setOrigin(0.5).setDepth(12).setVisible(false).setInteractive({ cursor: "pointer" });
+
+
 
     this.menuIcon.on("pointerup", () => {
       this.showPauseMenu(true);
@@ -116,9 +124,33 @@ export default class HocTapScene extends Phaser.Scene {
 
     const goHome = () => this.scene.start("mainMenu");
     this.btnTrangChu.on("pointerup", goHome);
-    this.txtTrangChu
-      .setInteractive({ cursor: "pointer" })
-      .on("pointerup", goHome);
+    this.txtTrangChu.setInteractive({ cursor: "pointer" }).on("pointerup", goHome);
+
+    const showEquationsMenu = () => {
+        this.btnTrangChu.setVisible(false);
+        this.txtTrangChu.setVisible(false);
+        this.btnCaiDat.setVisible(false);
+        this.txtCaiDat.setVisible(false);
+        this.btnPhuongTrinh.setVisible(false);
+        this.txtPhuongTrinh.setVisible(false);
+
+        this.txtMenuTitle.setText("Chọn Phương Trình");
+        this.txtEq1.setVisible(true);
+        this.txtEq2.setVisible(true);
+    };
+    this.btnPhuongTrinh.on("pointerup", showEquationsMenu);
+    this.txtPhuongTrinh.setInteractive({ cursor: "pointer" }).on("pointerup", showEquationsMenu);
+
+    const selectEquation = (id) => {
+        const data = mockDatabase.find(item => item.id === id);
+        if (data) {
+            this.txtLabBoardEquation.setText(data.content).setVisible(true);
+        }
+        this.showPauseMenu(false);
+    };
+    this.txtEq1.on("pointerup", () => selectEquation(mockDatabase[0].id));
+    this.txtEq2.on("pointerup", () => selectEquation(mockDatabase[1].id));
+
 
     this.overlay2 = this.add
       .rectangle(0, 0, camerawidth, cameraheight, 0x000000, 0.6)
@@ -131,15 +163,12 @@ export default class HocTapScene extends Phaser.Scene {
       .image(centerX, centerY, "bth")
       .setVisible(false)
       .setDepth(11);
-    this.periodicTable.setScale(
-      camerawidth / this.periodicTable.width / 1.1,
-      cameraheight / this.periodicTable.height / 1.1,
-    );
     this.periodicTableBtn = this.add
       .text(camerawidth, 0, "Mở Bảng", btnTextStyle)
       .setOrigin(1, 0)
       .setDepth(12)
       .setInteractive({ cursor: "pointer" });
+      
     this.periodicTableBtn.on("pointerup", () => {
       if (!isTableOpen) {
         this.showPeriodicTable(true);
@@ -162,22 +191,38 @@ export default class HocTapScene extends Phaser.Scene {
       });
     };
   }
+
   showPeriodicTable(isVisible) {
     this.overlay2.setVisible(isVisible);
     this.periodicTable.setVisible(isVisible);
   }
+
   showPauseMenu(isVisible) {
     this.overlay.setVisible(isVisible);
     this.menuBoard.setVisible(isVisible);
     this.txtMenuTitle.setVisible(isVisible);
 
-    this.btnTrangChu.setVisible(isVisible);
-    this.txtTrangChu.setVisible(isVisible);
+    if (isVisible) {
+        this.txtMenuTitle.setText("Menu");
+        this.btnTrangChu.setVisible(true);
+        this.txtTrangChu.setVisible(true);
+        this.btnCaiDat.setVisible(true);
+        this.txtCaiDat.setVisible(true);
+        this.btnPhuongTrinh.setVisible(true);
+        this.txtPhuongTrinh.setVisible(true);
 
-    this.btnCaiDat.setVisible(isVisible);
-    this.txtCaiDat.setVisible(isVisible);
+        this.txtEq1.setVisible(false);
+        this.txtEq2.setVisible(false);
+    } else {
+        this.btnTrangChu.setVisible(false);
+        this.txtTrangChu.setVisible(false);
+        this.btnCaiDat.setVisible(false);
+        this.txtCaiDat.setVisible(false);
+        this.btnPhuongTrinh.setVisible(false);
+        this.txtPhuongTrinh.setVisible(false);
 
-    this.btnPhuongTrinh.setVisible(isVisible);
-    this.txtPhuongTrinh.setVisible(isVisible);
+        this.txtEq1.setVisible(false);
+        this.txtEq2.setVisible(false);
+    }
   }
 }
