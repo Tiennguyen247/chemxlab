@@ -1,0 +1,209 @@
+[
+	{
+		"ReactionID" : 1,
+		"OptimalTemperature" : 400.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "High Heat,Sealed",
+		"Required_Conditions" : "MnO2",
+		"ReactionType" : "Decomposition",
+		"DescriptionVN" : "Chất rắn trắng phân huỷ, sinh ra khí không màu"
+	},
+	{
+		"ReactionID" : 2,
+		"OptimalTemperature" : 240.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "High Heat,Sealed",
+		"Required_Conditions" : null,
+		"ReactionType" : "Decomposition",
+		"DescriptionVN" : "Chất rắn tím chuyển thành hỗn hợp xanh lục và đen, sinh ra khí."
+	},
+	{
+		"ReactionID" : 3,
+		"OptimalTemperature" : 500.00,
+		"ExplosiveRisk" : "High",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis",
+		"DescriptionVN" : "Khí không màu cháy nổ tạo ra chất lỏng không màu"
+	},
+	{
+		"ReactionID" : 4,
+		"OptimalTemperature" : 300.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis",
+		"DescriptionVN" : "Chất rắn cháy sáng tạo ra khói trắng dày đặc"
+	},
+	{
+		"ReactionID" : 5,
+		"OptimalTemperature" : 800.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis",
+		"DescriptionVN" : "Dây sắt cháy sáng chói, bắn ra các hạt nóng chảy màu nâu đen"
+	},
+	{
+		"ReactionID" : 6,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : null,
+		"ReactionType" : "Single Replacement / Redox",
+		"DescriptionVN" : "Kim loại (kẽm) tan dần trong dung dịch không màu, sinh ra bọt khí không màu."
+	},
+	{
+		"ReactionID" : 7,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : null,
+		"ReactionType" : "Single Replacement / Redox",
+		"DescriptionVN" : "Kim loại (sắt) tan dần trong dung dịch không màu, sinh ra bọt khí không màu, dung dịch chuyển sang màu xanh lục nhạt."
+	},
+	{
+		"ReactionID" : 8,
+		"OptimalTemperature" : 400.00,
+		"ExplosiveRisk" : "High",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : null,
+		"ReactionType" : "Single Replacement / Redox",
+		"DescriptionVN" : "Chất rắn đen ($\\text{CuO}$) chuyển thành chất rắn đỏ (Cu), đồng thời có hơi nước ngưng tụ."
+	},
+	{
+		"ReactionID" : 9,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "High",
+		"ExplosiveCondition" : "High Concentration",
+		"Required_Conditions" : null,
+		"ReactionType" : "Single Replacement / Redox",
+		"DescriptionVN" : "Kim loại (Na) nổi trên mặt nước, tan nhanh, bốc khói và cháy/nổ nhỏ, tạo ra dung dịch bazơ."
+	},
+	{
+		"ReactionID" : 10,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "High",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : "Electric Current",
+		"ReactionType" : "Decomposition / Redox",
+		"DescriptionVN" : "Nước không màu bị phân hủy, sinh ra bọt khí không màu ở cả hai điện cực."
+	},
+	{
+		"ReactionID" : 11,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis",
+		"DescriptionVN" : "Chất rắn trắng ($\\text{Na}_2\\text{O}$) tan nhanh trong nước, dung dịch nóng lên, tạo ra dung dịch bazơ."
+	},
+	{
+		"ReactionID" : 12,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis / Acid-Base",
+		"DescriptionVN" : "Khí ($\\text{SO}_3$) tan nhanh vào dung dịch bazơ, tạo thành muối và nước."
+	},
+	{
+		"ReactionID" : 13,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : "",
+		"ReactionType" : "Neutralization / Double Displacement",
+		"DescriptionVN" : "Trộn hai dung dịch không màu, nhiệt độ tăng nhẹ, tạo thành dung dịch muối và nước."
+	},
+	{
+		"ReactionID" : 14,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Double Displacement / Acid-Base",
+		"DescriptionVN" : "Chất rắn trắng ($\\text{CaO}$) tan dần trong dung dịch, nhiệt độ tăng nhẹ, tạo thành dung dịch muối."
+	},
+	{
+		"ReactionID" : 15,
+		"OptimalTemperature" : 500.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis / Redox",
+		"DescriptionVN" : "Hỗn hợp bột sắt và lưu huỳnh được nung nóng, cháy sáng chói, tạo ra chất rắn màu đen."
+	},
+	{
+		"ReactionID" : 16,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : "Aqueous Solution",
+		"ReactionType" : "Precipitation / Double Displacement",
+		"DescriptionVN" : "Trộn hai dung dịch trong suốt, xuất hiện ngay lập tức kết tủa màu trắng."
+	},
+	{
+		"ReactionID" : 17,
+		"OptimalTemperature" : 600.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : "",
+		"Required_Conditions" : "",
+		"ReactionType" : "Combustion / Synthesis",
+		"DescriptionVN" : "Chất rắn đen (C) cháy sáng đỏ tạo ra khí không màu."
+	},
+	{
+		"ReactionID" : 18,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Synthesis",
+		"DescriptionVN" : "Chất rắn trắng ($\\text{CaO}$) kết hợp với khí ($\\text{CO}_2$) tạo ra chất rắn trắng mới ($\\text{CaCO}_3$)."
+	},
+	{
+		"ReactionID" : 19,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : "",
+		"ReactionType" : "Synthesis / Acid-Base",
+		"DescriptionVN" : "Chất rắn trắng ($\\text{CaO}$) tan dần trong nước, tỏa nhiệt mạnh, tạo ra chất kết tủa trắng (dung dịch vôi trong)."
+	},
+	{
+		"ReactionID" : 20,
+		"OptimalTemperature" : 800.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : null,
+		"ReactionType" : "Combustion / Synthesis",
+		"DescriptionVN" : "Chất rắn cháy sáng chói, tạo ra chất rắn màu trắng."
+	},
+	{
+		"ReactionID" : 21,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "Ignition Source",
+		"Required_Conditions" : null,
+		"ReactionType" : "Single Replacement / Redox",
+		"DescriptionVN" : "Kim loại (Nhôm) tan dần trong dung dịch axit, sinh ra bọt khí không màu."
+	},
+	{
+		"ReactionID" : 22,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : null,
+		"ExplosiveCondition" : null,
+		"Required_Conditions" : "Aqueous Solution",
+		"ReactionType" : "Precipitation / Double Displacement",
+		"DescriptionVN" : "Trộn hai dung dịch trong suốt, xuất hiện ngay lập tức kết tủa keo màu trắng."
+	},
+	{
+		"ReactionID" : 23,
+		"OptimalTemperature" : 25.00,
+		"ExplosiveRisk" : "Low",
+		"ExplosiveCondition" : "Sealed",
+		"Required_Conditions" : null,
+		"ReactionType" : "Double Displacement / Gas Evolution",
+		"DescriptionVN" : "Chất rắn trắng tan dần trong dung dịch axit, sinh ra bọt khí không màu sủi mạnh."
+	}
+]

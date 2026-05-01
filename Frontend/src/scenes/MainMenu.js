@@ -1,5 +1,7 @@
 import Phaser from "../lib/phaser.js";
 
+=======
+
 class chat {
   constructor(id, mot, hai, ba) {
     this.id = id;
@@ -23,21 +25,66 @@ class glass {
   }
 }
 
+=======
+
 export default class MainMenu extends Phaser.Scene {
   /**@type{Phaser.Physics.Arcade.Sprite} */
   tudobtn;
   luyentapbtn;
   hoctapbtn;
+  constructor() {
+    super("mainMenu");
+  }
 
   constructor() {
     super("mainMenu");
   }
 
+=======
   preload() {
     this.load.image("rabbit", "assets/mm.jpg");
     this.load.image("tudo", "assets/tudobtn.png");
     this.load.image("luyentap", "assets/luyentapbtn.png");
     this.load.image("hoctap", "assets/hoctapbtn.png");
+
+  }
+  create() {
+    const camerawidth = this.cameras.main.width;
+    const cameraheight = this.cameras.main.height;
+    const simg = this.add.image(0, 0, "rabbit").setOrigin(0, 0);
+    simg.setScale(camerawidth / simg.width, cameraheight / simg.height);
+    this.tudobtn = this.add.image(410, 330, "tudo").setScale(0.65, 0.6);
+    this.luyentapbtn = this.add.image(410, 250, "luyentap").setScale(0.65, 0.6);
+    this.hoctapbtn = this.add.image(410, 180, "hoctap").setScale(0.65, 0.6);
+    this.tudobtn.setInteractive({ draggable: true, cursor: "pointer" });
+    this.hoctapbtn.setInteractive({ draggable: true, cursor: "pointer" });
+    this.luyentapbtn.setInteractive({ draggable: true, cursor: "pointer" });
+    this.input.on("drag", (pointer, gameob, x, y) => {
+      gameob.setPosition(x, y);
+    });
+    this.tudobtn.on("pointerup", (pointer) => {
+      onClick();
+    });
+    this.luyentapbtn.on("pointerup", (pointer) => {
+      onClick();
+    });
+    this.hoctapbtn.on("pointerup", (pointer) => {
+      onClick();
+    });
+  }
+  update() {}
+  isStart() {
+    this.input.on("mouseUp");
+  }
+
+  goPlay() {
+    this.scene.start("game");
+  }
+}
+function onClick() {
+  console.log("Lam gi do");
+=======
+=======
     this.load.image("3_gach", "assets/UI/3_gach.png");
   }
 
@@ -103,4 +150,6 @@ function setButtonEffect(scene, btn) {
       ease: "Power1",
     });
   });
+
+=======
 }

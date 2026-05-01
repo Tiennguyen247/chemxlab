@@ -1,9 +1,29 @@
 services:
+  db:
+    image: mysql:8.0
+    container_name: chemxlab-db-1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+
   backend:
     build: ./backend
+    container_name: chemxlab-backend-1
+    restart: always
     ports:
       - "3000:3000"
-    volumes:
-      - ./db:/usr/src/app/../db
-    restart: always
-
+    environment:
+      - DB_HOST=db
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - PORT=3000
+    depends_on:
+      - db
