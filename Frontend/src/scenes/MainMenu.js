@@ -1,8 +1,7 @@
 import Phaser from "../lib/phaser.js";
-<<<<<<< Updated upstream
+
 =======
 
->>>>>>> Stashed changes
 class chat {
   constructor(id, mot, hai, ba) {
     this.id = id;
@@ -25,32 +24,29 @@ class glass {
     return this.image;
   }
 }
-<<<<<<< Updated upstream
+
 =======
 
->>>>>>> Stashed changes
 export default class MainMenu extends Phaser.Scene {
   /**@type{Phaser.Physics.Arcade.Sprite} */
   tudobtn;
   luyentapbtn;
   hoctapbtn;
-<<<<<<< Updated upstream
   constructor() {
     super("mainMenu");
   }
+
+  constructor() {
+    super("mainMenu");
+  }
+
 =======
-
-  constructor() {
-    super("mainMenu");
-  }
-
->>>>>>> Stashed changes
   preload() {
     this.load.image("rabbit", "assets/mm.jpg");
     this.load.image("tudo", "assets/tudobtn.png");
     this.load.image("luyentap", "assets/luyentapbtn.png");
     this.load.image("hoctap", "assets/hoctapbtn.png");
-<<<<<<< Updated upstream
+
   }
   create() {
     const camerawidth = this.cameras.main.width;
@@ -87,6 +83,7 @@ export default class MainMenu extends Phaser.Scene {
 }
 function onClick() {
   console.log("Lam gi do");
+=======
 =======
     this.load.image("3_gach", "assets/UI/3_gach.png");
   }
@@ -153,5 +150,6 @@ function setButtonEffect(scene, btn) {
       ease: "Power1",
     });
   });
->>>>>>> Stashed changes
+
+=======
 }
