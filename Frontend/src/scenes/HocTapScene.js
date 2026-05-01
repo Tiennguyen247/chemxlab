@@ -1,5 +1,7 @@
 import Phaser from "../lib/phaser.js";
 
+const config = [{ x: 1, y: 2, id: 1 }];
+
 export default class HocTapScene extends Phaser.Scene {
   constructor() {
     super("HocTapScene");
@@ -16,6 +18,9 @@ export default class HocTapScene extends Phaser.Scene {
   }
 
   create() {
+    this.input.on("pointerdown", (pointer) =>
+      console.log("Tọa độ x: " + pointer.x, "\tTọa độ y:", pointer.y),
+    );
     const camerawidth = this.cameras.main.width;
     const cameraheight = this.cameras.main.height;
     const centerX = camerawidth / 2;
@@ -142,6 +147,16 @@ export default class HocTapScene extends Phaser.Scene {
         this.periodicTableBtn.setText("Mở Bảng");
       }
     });
+
+    const addElementZone = (x, y, width, height, id) => {
+      let zone = this.add
+        .zone(x, y, width, height)
+        .setInteractive({ cursor: "pointer" })
+        .setData(id, `luc+${id}`);
+      zone.on("pointerup", () => {
+        console.log("da nhan vao zone co id: ", zone.getData(id));
+      });
+    };
   }
   showPeriodicTable(isVisible) {
     this.overlay2.setVisible(isVisible);
