@@ -1,6 +1,6 @@
 import Phaser from "../lib/phaser.js";
 
-const config = [{ x: 1, y: 2, id: 1 }];
+const config = [{ x: 74, y: 140, id: 1 }];
 
 export default class HocTapScene extends Phaser.Scene {
   constructor() {
@@ -19,7 +19,7 @@ export default class HocTapScene extends Phaser.Scene {
 
   create() {
     this.input.on("pointerdown", (pointer) =>
-      console.log("Tọa độ x: " + pointer.x, "\tTọa độ y:", pointer.y),
+      console.log("Tọa độ x: " + pointer.x, " \tTọa độ y:", pointer.y),
     );
     const camerawidth = this.cameras.main.width;
     const cameraheight = this.cameras.main.height;
@@ -131,6 +131,10 @@ export default class HocTapScene extends Phaser.Scene {
       .image(centerX, centerY, "bth")
       .setVisible(false)
       .setDepth(11);
+    this.periodicTable.setScale(
+      camerawidth / this.periodicTable.width / 1.1,
+      cameraheight / this.periodicTable.height / 1.1,
+    );
     this.periodicTableBtn = this.add
       .text(camerawidth, 0, "Mở Bảng", btnTextStyle)
       .setOrigin(1, 0)
