@@ -20,7 +20,7 @@ export default class HocTapScene extends Phaser.Scene {
     this.load.image("btnTrangChu", "assets/backbtn.png");
     this.load.image("btnCaiDat", "assets/caidatbtn.png");
     this.load.image("btnPhuongTrinh", "assets/phtrinhbtn.png");
-    this.load.image("bth", "assets/bth.png");
+    this.load.image("bth", "assets/12345.jpg");
   }
 
   create() {
