@@ -1,6 +1,6 @@
 import Phaser from "../lib/phaser.js";
 
-const config = [{ x: 1, y: 2, id: 1 }];
+const configPeriodicTable = [{ x: 125, y: 100, id: 1 }];
 
 const mockDatabase = [
   { id: 1, content: "HCl + NaOH → NaCl + H₂O" },
@@ -23,9 +23,6 @@ export default class HocTapScene extends Phaser.Scene {
   }
 
   create() {
-    this.input.on("pointerdown", (pointer) =>
-      console.log("Tọa độ x: " + pointer.x, "\tTọa độ y:", pointer.y),
-    );
     const camerawidth = this.cameras.main.width;
     const cameraheight = this.cameras.main.height;
     const centerX = camerawidth / 2;
@@ -33,7 +30,29 @@ export default class HocTapScene extends Phaser.Scene {
 
     const simg = this.add.image(0, 0, "lab").setOrigin(0, 0);
     simg.setScale(camerawidth / simg.width, cameraheight / simg.height);
-
+    this.periodicTableContainer = [];
+    const addElementZone = (x, y, width, height, id) => {
+      let zone = this.add
+        .zone(x, y, width, height)
+        .setOrigin(0)
+        .setDepth(12)
+        .setInteractive({ cursor: "pointer" });
+      this.input.enableDebug(zone, 0x00ff00);
+      this.periodicTableContainer.push(zone);
+      zone.on("pointerup", () => {
+        console.log("da nhan vao zone co id: ", id);
+      });
+    };
+    configPeriodicTable.forEach((item) => {
+      addElementZone(item.x, item.y, 68, 64, item.id);
+    });
+    this.input.on("pointerdown", (pointer) =>
+      console.log(
+        "Tọa độ x: " + Math.round(pointer.x),
+        "\tTọa độ y:",
+        Math.round(pointer.y),
+      ),
+    );
     this.txtLabBoardEquation = this.add
       .text(centerX, centerY - 100, "", {
         fontFamily: "Comic Sans MS, cursive, sans-serif",
@@ -215,21 +234,14 @@ export default class HocTapScene extends Phaser.Scene {
         this.periodicTableBtn.setText("Mở Bảng");
       }
     });
-
-    const addElementZone = (x, y, width, height, id) => {
-      let zone = this.add
-        .zone(x, y, width, height)
-        .setInteractive({ cursor: "pointer" })
-        .setData(id, `luc+${id}`);
-      zone.on("pointerup", () => {
-        console.log("da nhan vao zone co id: ", zone.getData(id));
-      });
-    };
   }
 
   showPeriodicTable(isVisible) {
     this.overlay2.setVisible(isVisible);
     this.periodicTable.setVisible(isVisible);
+    this.periodicTableContainer.forEach((item) => {
+      item.setVisible(isVisible);
+    });
   }
 
   showPauseMenu(isVisible) {
