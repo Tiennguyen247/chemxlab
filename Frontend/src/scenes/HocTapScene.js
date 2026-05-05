@@ -16,6 +16,7 @@ export default class HocTapScene extends Phaser.Scene {
     this.load.image("btnPhuongTrinh", "assets/phtrinhbtn.png");
     this.load.image("bth", "assets/12345.jpg");
     this.load.image("iconBangTH", "assets/mobangth.png");
+    
   }
 
   async create() {
@@ -121,14 +122,26 @@ export default class HocTapScene extends Phaser.Scene {
 
   async fetchReactions() {
     try {
-      const response = await fetch('http://localhost:8080/api/reactions');
-      this.reactionsData = await response.json();
-      console.log("Dữ liệu tải thành công:", this.reactionsData);
+        const response = await fetch('https://anguished-liberty-galley.ngrok-free.dev/api/reactions', {
+            method: 'GET',
+            headers: {
+                // ĐÂY LÀ DÒNG QUAN TRỌNG NHẤT ĐỂ CHẠY TRÊN TRÌNH DUYỆT
+                'ngrok-skip-browser-warning': 'true', 
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        this.reactionsData = await response.json();
+        console.log("Dữ liệu tải thành công:", this.reactionsData);
     } catch (error) {
-      console.error("Lỗi khi kết nối server:", error);
-      this.reactionsData = [{ id: 0, content: "Lỗi kết nối Server", description: "Vui lòng kiểm tra lại Backend" }];
+        console.error("Lỗi khi kết nối server:", error);
+        this.reactionsData = [{ id: 0, content: "Lỗi kết nối Server", description: "Vui lòng kiểm tra lại" }];
     }
-  }
+}
 
   displayReactionList() {
     const centerX = this.cameras.main.width / 2;
