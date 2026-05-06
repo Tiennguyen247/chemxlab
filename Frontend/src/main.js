@@ -1,6 +1,7 @@
 import Phaser from "./lib/phaser.js";
 import MainMenu from "./scenes/MainMenu.js";
 import HocTapScene from "./scenes/HocTapScene.js";
+import NhiemVuScene from "./scenes/NhiemVuScene.js";
 console.dir(Phaser);
 export default new Phaser.Game({
   type: Phaser.AUTO,
@@ -16,7 +17,7 @@ export default new Phaser.Game({
     // Tự động nhận diện khi thay đổi kích thước cửa sổ/xoay màn hình
     autoRound: true,
   },
-  scene: [MainMenu, HocTapScene],
+  scene: [MainMenu, HocTapScene, NhiemVuScene],
   physics: {
     default: "arcade",
     arcade: {

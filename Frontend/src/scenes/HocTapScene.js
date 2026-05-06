@@ -10,6 +10,8 @@ const mockDatabase = [
 export default class HocTapScene extends Phaser.Scene {
   constructor() {
     super("HocTapScene");
+    this.reactionsData = [];
+    this.equationTextObjects = [];
   }
 
   preload() {
@@ -20,13 +22,16 @@ export default class HocTapScene extends Phaser.Scene {
     this.load.image("btnCaiDat", "assets/caidatbtn.png");
     this.load.image("btnPhuongTrinh", "assets/phtrinhbtn.png");
     this.load.image("bth", "assets/12345.jpg");
+    this.load.image("iconBangTH", "assets/mobangth.png");
   }
 
-  create() {
+  async create() {
     const camerawidth = this.cameras.main.width;
     const cameraheight = this.cameras.main.height;
     const centerX = camerawidth / 2;
     const centerY = cameraheight / 2;
+
+    await this.fetchReactions();
 
     const simg = this.add.image(0, 0, "lab").setOrigin(0, 0);
     simg.setScale(camerawidth / simg.width, cameraheight / simg.height);
@@ -56,9 +61,22 @@ export default class HocTapScene extends Phaser.Scene {
     this.txtLabBoardEquation = this.add
       .text(centerX, centerY - 100, "", {
         fontFamily: "Comic Sans MS, cursive, sans-serif",
-        fontSize: "35px",
+        fontSize: "40px",
         fontStyle: "bold",
         color: "#000000",
+      })
+      .setOrigin(0.5)
+      .setDepth(2)
+      .setVisible(false);
+
+    this.txtDescription = this.add
+      .text(centerX, centerY - 40, "", {
+        fontFamily: "Comic Sans MS, cursive, sans-serif",
+        fontSize: "22px",
+        fontStyle: "italic",
+        color: "#333333",
+        align: "center",
+        wordWrap: { width: 700 },
       })
       .setOrigin(0.5)
       .setDepth(2)
@@ -139,35 +157,8 @@ export default class HocTapScene extends Phaser.Scene {
       .setDepth(12)
       .setVisible(false);
 
-    const equationStyle = {
-      fontFamily: "Comic Sans MS, cursive, sans-serif",
-      fontSize: "20px",
-      fontStyle: "bold",
-      color: "#000000",
-      align: "center",
-    };
-
-    this.txtEq1 = this.add
-      .text(centerX, centerY - 30, mockDatabase[0].content, equationStyle)
-      .setOrigin(0.5)
-      .setDepth(12)
-      .setVisible(false)
-      .setInteractive({ cursor: "pointer" });
-
-    this.txtEq2 = this.add
-      .text(centerX, centerY + 50, mockDatabase[1].content, equationStyle)
-      .setOrigin(0.5)
-      .setDepth(12)
-      .setVisible(false)
-      .setInteractive({ cursor: "pointer" });
-
-    this.menuIcon.on("pointerup", () => {
-      this.showPauseMenu(true);
-    });
-
-    this.overlay.on("pointerup", () => {
-      this.showPauseMenu(false);
-    });
+    this.menuIcon.on("pointerup", () => this.showPauseMenu(true));
+    this.overlay.on("pointerup", () => this.showPauseMenu(false));
 
     const goHome = () => this.scene.start("mainMenu");
     this.btnTrangChu.on("pointerup", goHome);
@@ -176,32 +167,22 @@ export default class HocTapScene extends Phaser.Scene {
       .on("pointerup", goHome);
 
     const showEquationsMenu = () => {
-      this.btnTrangChu.setVisible(false);
-      this.txtTrangChu.setVisible(false);
-      this.btnCaiDat.setVisible(false);
-      this.txtCaiDat.setVisible(false);
-      this.btnPhuongTrinh.setVisible(false);
-      this.txtPhuongTrinh.setVisible(false);
-
+      this.toggleMainMenuButtons(false);
       this.txtMenuTitle.setText("Chọn Phương Trình");
-      this.txtEq1.setVisible(true);
-      this.txtEq2.setVisible(true);
+      this.displayReactionList();
     };
     this.btnPhuongTrinh.on("pointerup", showEquationsMenu);
     this.txtPhuongTrinh
       .setInteractive({ cursor: "pointer" })
       .on("pointerup", showEquationsMenu);
 
-    const selectEquation = (id) => {
-      const data = mockDatabase.find((item) => item.id === id);
-      if (data) {
-        this.txtLabBoardEquation.setText(data.content).setVisible(true);
-      }
-      this.showPauseMenu(false);
-    };
-    this.txtEq1.on("pointerup", () => selectEquation(mockDatabase[0].id));
-    this.txtEq2.on("pointerup", () => selectEquation(mockDatabase[1].id));
-
+    this.setupPeriodicTable(
+      centerX,
+      centerY,
+      camerawidth,
+      cameraheight,
+      btnTextStyle,
+    );
     this.overlay2 = this.add
       .rectangle(0, 0, camerawidth, cameraheight, 0x000000, 0.6)
       .setOrigin(0)
@@ -217,31 +198,83 @@ export default class HocTapScene extends Phaser.Scene {
       camerawidth / this.periodicTable.width / 1.1,
       cameraheight / this.periodicTable.height / 1.1,
     );
-    this.periodicTableBtn = this.add
-      .text(camerawidth, 0, "Mở Bảng", btnTextStyle)
-      .setOrigin(1, 0)
-      .setDepth(12)
-      .setInteractive({ cursor: "pointer" });
+  }
 
-    this.periodicTableBtn.on("pointerup", () => {
-      if (!isTableOpen) {
-        this.showPeriodicTable(true);
-        isTableOpen = true;
-        this.periodicTableBtn.setText("Đóng Bảng");
-      } else {
-        this.showPeriodicTable(false);
-        isTableOpen = false;
-        this.periodicTableBtn.setText("Mở Bảng");
+  async fetchReactions() {
+    try {
+      const response = await fetch(
+        "https://anguished-liberty-galley.ngrok-free.dev/api/reactions",
+        {
+          method: "GET",
+          headers: {
+            // ĐÂY LÀ DÒNG QUAN TRỌNG NHẤT ĐỂ CHẠY TRÊN TRÌNH DUYỆT
+            "ngrok-skip-browser-warning": "true",
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      this.reactionsData = await response.json();
+      console.log("Dữ liệu tải thành công:", this.reactionsData);
+    } catch (error) {
+      console.error("Lỗi khi kết nối server:", error);
+      this.reactionsData = [
+        {
+          id: 0,
+          content: "Lỗi kết nối Server",
+          description: "Vui lòng kiểm tra lại",
+        },
+      ];
+    }
+  }
+
+  displayReactionList() {
+    const centerX = this.cameras.main.width / 2;
+    const centerY = this.cameras.main.height / 2;
+    const style = {
+      fontFamily: "Comic Sans MS",
+      fontSize: "20px",
+      color: "#000000",
+      fontStyle: "bold",
+    };
+
+    this.equationTextObjects.forEach((obj) => obj.destroy());
+    this.equationTextObjects = [];
+
+    this.reactionsData.forEach((data, index) => {
+      const txt = this.add
+        .text(centerX, centerY - 50 + index * 40, data.content, style)
+        .setOrigin(0.5)
+        .setDepth(12)
+        .setInteractive({ cursor: "pointer" });
+
+      txt.on("pointerup", () => {
+        this.txtLabBoardEquation.setText(data.content).setVisible(true);
+        if (data.description) {
+          this.txtDescription.setText(data.description).setVisible(true);
+        }
+        this.showPauseMenu(false);
+      });
+
+      this.equationTextObjects.push(txt);
     });
+  }
+  toggleMainMenuButtons(isVisible) {
+    this.btnTrangChu.setVisible(isVisible);
+    this.txtTrangChu.setVisible(isVisible);
+    this.btnCaiDat.setVisible(isVisible);
+    this.txtCaiDat.setVisible(isVisible);
+    this.btnPhuongTrinh.setVisible(isVisible);
+    this.txtPhuongTrinh.setVisible(isVisible);
   }
 
   showPeriodicTable(isVisible) {
     this.overlay2.setVisible(isVisible);
     this.periodicTable.setVisible(isVisible);
-    this.periodicTableContainer.forEach((item) => {
-      item.setVisible(isVisible);
-    });
   }
 
   showPauseMenu(isVisible) {
@@ -251,25 +284,49 @@ export default class HocTapScene extends Phaser.Scene {
 
     if (isVisible) {
       this.txtMenuTitle.setText("Menu");
-      this.btnTrangChu.setVisible(true);
-      this.txtTrangChu.setVisible(true);
-      this.btnCaiDat.setVisible(true);
-      this.txtCaiDat.setVisible(true);
-      this.btnPhuongTrinh.setVisible(true);
-      this.txtPhuongTrinh.setVisible(true);
-
-      this.txtEq1.setVisible(false);
-      this.txtEq2.setVisible(false);
+      this.toggleMainMenuButtons(true);
+      this.equationTextObjects.forEach((obj) => obj.setVisible(false));
+      this.txtDescription.setVisible(false);
     } else {
-      this.btnTrangChu.setVisible(false);
-      this.txtTrangChu.setVisible(false);
-      this.btnCaiDat.setVisible(false);
-      this.txtCaiDat.setVisible(false);
-      this.btnPhuongTrinh.setVisible(false);
-      this.txtPhuongTrinh.setVisible(false);
-
-      this.txtEq1.setVisible(false);
-      this.txtEq2.setVisible(false);
+      this.toggleMainMenuButtons(false);
+      this.equationTextObjects.forEach((obj) => obj.setVisible(false));
     }
+  }
+
+  setupPeriodicTable(
+    centerX,
+    centerY,
+    camerawidth,
+    cameraheight,
+    btnTextStyle,
+  ) {
+    this.overlay2 = this.add
+      .rectangle(0, 0, camerawidth, cameraheight, 0x000000, 0.6)
+      .setOrigin(0)
+      .setDepth(10)
+      .setVisible(false);
+    this.periodicTable = this.add
+      .image(centerX, centerY, "bth")
+      .setVisible(false)
+      .setDepth(11);
+    this.periodicTable.setScale(
+      camerawidth / this.periodicTable.width / 1.1,
+      cameraheight / this.periodicTable.height / 1.1,
+    );
+
+    let isTableOpen = false;
+
+    this.periodicTableBtn = this.add
+      .image(camerawidth - 20, 20, "iconBangTH")
+      .setOrigin(1, 0)
+      .setDepth(12)
+      .setScale(0.15)
+      .setInteractive({ cursor: "pointer" });
+
+    this.periodicTableBtn.on("pointerup", () => {
+      isTableOpen = !isTableOpen;
+      this.overlay2.setVisible(isTableOpen);
+      this.periodicTable.setVisible(isTableOpen);
+    });
   }
 }
