@@ -67,12 +67,16 @@ export default class MainMenu extends Phaser.Scene {
       .setScale(0.15)
       .setInteractive({ cursor: "pointer" });
     this.add.container();
+    
     this.tudobtn.on("pointerup", (pointer) => {
       console.log("ads");
     });
+    
+    // Đã sửa đổi sự kiện nút Luyện Tập để chuyển sang NhiemVuScene
     this.luyentapbtn.on("pointerup", (pointer) => {
-      console.log("ads");
+      this.scene.start("NhiemVuScene");
     });
+    
     this.hoctapbtn.on("pointerup", (pointer) => {
       this.scene.start("HocTapScene");
     });
@@ -80,6 +84,7 @@ export default class MainMenu extends Phaser.Scene {
 
   update() {}
 }
+
 function setButtonEffect(scene, btn) {
   btn.setInteractive({ cursor: "pointer" });
 
